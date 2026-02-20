@@ -10,8 +10,12 @@ export class AccessTokenGuard implements CanActivate {
     // Lấy access token từ header Authorization
     const authHeader = request.headers['authorization']
     const accessToken = authHeader && authHeader.split(' ')[1]
+    if (!accessToken) {
+      throw new UnauthorizedException()
+    }
     try {
       const decodeAccessToken = await this.tokenService.verifyAccessToken(accessToken)
+      console.log(decodeAccessToken)
       request[REQUEST_USER_KEY] = decodeAccessToken
       return true
     } catch (error: any) {
