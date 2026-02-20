@@ -1,14 +1,15 @@
-import { Body, Controller, Post } from '@nestjs/common';
-import { RegisterBodyDTO } from 'src/routes/auth/auth.dto';
+import { Body, Controller, Post, SerializeOptions } from '@nestjs/common';
+import { RegisterBodyDTO, RegisterResDTO } from 'src/routes/auth/auth.dto';
 import { AuthService } from 'src/routes/auth/auth.service';
 
 @Controller('auth')
+@SerializeOptions({ type: RegisterResDTO })
 export class AuthController {
   constructor(private readonly authService: AuthService) { }
   @Post('register')
-  register(@Body() body: RegisterBodyDTO) {
-    console.log(body);
+  async register(@Body() body: RegisterBodyDTO) {
     // return 'register'
-    return this.authService.register(body);
+    const result = await this.authService.register(body);
+    return result;
   }
 }
