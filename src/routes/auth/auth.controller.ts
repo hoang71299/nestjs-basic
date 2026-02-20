@@ -13,7 +13,7 @@ import { AccessTokenGuard } from 'src/shared/guards/access-token.guard'
 @Controller('auth')
 @SerializeOptions({ type: RegisterResDTO })
 export class AuthController {
-  constructor(private readonly authService: AuthService) {}
+  constructor(private readonly authService: AuthService) { }
   @Post('register')
   async register(@Body() body: RegisterBodyDTO) {
     // return 'register'
