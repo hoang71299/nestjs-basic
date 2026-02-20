@@ -1,6 +1,6 @@
 import { ConflictException, Injectable, UnauthorizedException, UnprocessableEntityException } from '@nestjs/common'
-import { Prisma } from 'src/generated/prisma/client'
 import { LoginBodyDTO, RegisterBodyDTO } from 'src/routes/auth/auth.dto'
+import { isNotFoundPrismaError, isUniqueConstraintError } from 'src/shared/helper'
 import { HashingService } from 'src/shared/services/hashing.service'
 import { PrismaService } from 'src/shared/services/prisma.service'
 import { TokenService } from 'src/shared/services/token.service'
@@ -25,7 +25,7 @@ export class AuthService {
       })
       return user
     } catch (error) {
-      if (error instanceof Prisma.PrismaClientKnownRequestError && error.code === 'P2002') {
+      if (isUniqueConstraintError(error)) {
         throw new ConflictException('Email already exists')
       }
       throw error
@@ -89,7 +89,7 @@ export class AuthService {
       return this.generateToken({ userId })
     } catch (error) {
       // truong hop da refreshtoken roi hay thogn bao cho user biet
-      if (error instanceof Prisma.PrismaClientKnownRequestError && error.code === 'P2025') {
+      if (isNotFoundPrismaError(error)) {
         throw new UnauthorizedException('Refresh token is invoked')
       }
       throw new UnauthorizedException('Refresh token is invalid')

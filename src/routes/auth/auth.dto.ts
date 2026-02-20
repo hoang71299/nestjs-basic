@@ -24,7 +24,7 @@ export class RegisterBodyDTO extends LoginBodyDTO {
   name!: string
 
   @IsString()
-  @Match('password', { message: "Mật khẩu không được trùng" })
+  @Match('password', { message: 'Mật khẩu không được trùng' })
   confirmPassword!: string
 }
 
@@ -54,4 +54,4 @@ export class refreshTokenBodyDTO {
   refreshToken!: string
 }
 
-export class refreshTokenResDTO extends LoginBodyDTO { }
+export class refreshTokenResDTO extends LoginBodyDTO {}
