@@ -2,6 +2,7 @@ import { Body, Controller, Post, SerializeOptions } from '@nestjs/common'
 import {
   LoginBodyDTO,
   LoginResDTO,
+  refreshTokenBodyDTO,
   RegisterBodyDTO,
   RegisterResDTO,
 } from 'src/routes/auth/auth.dto'
@@ -24,5 +25,9 @@ export class AuthController {
   async login(@Body() body: LoginBodyDTO) {
     const result = await this.authService.login(body)
     return new LoginResDTO(result)
+  }
+  @Post('refresh-token')
+  async refreshToken(@Body() body: refreshTokenBodyDTO) {
+    return this.authService.refreshToken(body.refreshToken)
   }
 }

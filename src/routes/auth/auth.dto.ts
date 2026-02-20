@@ -45,3 +45,10 @@ export class RegisterResDTO extends SuccessResponse {
     Object.assign(this, partial)
   }
 }
+
+export class refreshTokenBodyDTO {
+  @IsString()
+  refreshToken!: string
+}
+
+export class refreshTokenResDTO extends LoginBodyDTO {}

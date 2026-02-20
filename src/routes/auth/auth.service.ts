@@ -81,4 +81,34 @@ export class AuthService {
     })
     return { accessToken, refreshToken }
   }
+  async refreshToken(refreshToken: string) {
+    try {
+      //kiem tra refresh token co hop le hay khong
+      const { userId } =
+        await this.tokenService.verifyRefreshToken(refreshToken)
+      // kiem tra xem refreshtoken co trong database ko
+      await this.prismaService.refreshToken.findUniqueOrThrow({
+        where: {
+          token: refreshToken,
+        },
+      })
+      //xoa refresh token old
+      await this.prismaService.refreshToken.delete({
+        where: {
+          token: refreshToken,
+        },
+      })
+      //tao access token va refresh token moi
+      return this.generateToken({ userId })
+    } catch (error) {
+      // truong hop da refreshtoken roi hay thogn bao cho user biet
+      if (
+        error instanceof Prisma.PrismaClientKnownRequestError &&
+        error.code === 'P2025'
+      ) {
+        throw new UnauthorizedException('Refresh token is invoked')
+      }
+      throw new UnauthorizedException('Refresh token is invalid')
+    }
+  }
 }
