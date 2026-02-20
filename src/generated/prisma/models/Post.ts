@@ -15,8 +15,7 @@ import type * as Prisma from '../internal/prismaNamespace.js'
  * Model Post
  *
  */
-export type PostModel =
-  runtime.Types.Result.DefaultSelection<Prisma.$PostPayload>
+export type PostModel = runtime.Types.Result.DefaultSelection<Prisma.$PostPayload>
 
 export type AggregatePost = {
   _count: PostCountAggregateOutputType | null
@@ -103,8 +102,7 @@ export type PostCountAggregateInputType = {
 }
 
 export type PostAggregateArgs<
-  ExtArgs extends runtime.Types.Extensions.InternalArgs =
-    runtime.Types.Extensions.DefaultArgs,
+  ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs,
 > = {
   /**
    * Filter which Post to aggregate.
@@ -115,9 +113,7 @@ export type PostAggregateArgs<
    *
    * Determine the order of Posts to fetch.
    */
-  orderBy?:
-    | Prisma.PostOrderByWithRelationInput
-    | Prisma.PostOrderByWithRelationInput[]
+  orderBy?: Prisma.PostOrderByWithRelationInput | Prisma.PostOrderByWithRelationInput[]
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
    *
@@ -177,13 +173,10 @@ export type GetPostAggregateType<T extends PostAggregateArgs> = {
 }
 
 export type PostGroupByArgs<
-  ExtArgs extends runtime.Types.Extensions.InternalArgs =
-    runtime.Types.Extensions.DefaultArgs,
+  ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs,
 > = {
   where?: Prisma.PostWhereInput
-  orderBy?:
-    | Prisma.PostOrderByWithAggregationInput
-    | Prisma.PostOrderByWithAggregationInput[]
+  orderBy?: Prisma.PostOrderByWithAggregationInput | Prisma.PostOrderByWithAggregationInput[]
   by: Prisma.PostScalarFieldEnum[] | Prisma.PostScalarFieldEnum
   having?: Prisma.PostScalarWhereWithAggregatesInput
   take?: number
@@ -275,13 +268,9 @@ export type PostOrderByWithAggregationInput = {
 }
 
 export type PostScalarWhereWithAggregatesInput = {
-  AND?:
-    | Prisma.PostScalarWhereWithAggregatesInput
-    | Prisma.PostScalarWhereWithAggregatesInput[]
+  AND?: Prisma.PostScalarWhereWithAggregatesInput | Prisma.PostScalarWhereWithAggregatesInput[]
   OR?: Prisma.PostScalarWhereWithAggregatesInput[]
-  NOT?:
-    | Prisma.PostScalarWhereWithAggregatesInput
-    | Prisma.PostScalarWhereWithAggregatesInput[]
+  NOT?: Prisma.PostScalarWhereWithAggregatesInput | Prisma.PostScalarWhereWithAggregatesInput[]
   id?: Prisma.IntWithAggregatesFilter<'Post'> | number
   title?: Prisma.StringWithAggregatesFilter<'Post'> | string
   content?: Prisma.StringWithAggregatesFilter<'Post'> | string
@@ -398,87 +387,55 @@ export type PostSumOrderByAggregateInput = {
 
 export type PostCreateNestedManyWithoutAuthorInput = {
   create?:
-    | Prisma.XOR<
-        Prisma.PostCreateWithoutAuthorInput,
-        Prisma.PostUncheckedCreateWithoutAuthorInput
-      >
+    | Prisma.XOR<Prisma.PostCreateWithoutAuthorInput, Prisma.PostUncheckedCreateWithoutAuthorInput>
     | Prisma.PostCreateWithoutAuthorInput[]
     | Prisma.PostUncheckedCreateWithoutAuthorInput[]
-  connectOrCreate?:
-    | Prisma.PostCreateOrConnectWithoutAuthorInput
-    | Prisma.PostCreateOrConnectWithoutAuthorInput[]
+  connectOrCreate?: Prisma.PostCreateOrConnectWithoutAuthorInput | Prisma.PostCreateOrConnectWithoutAuthorInput[]
   createMany?: Prisma.PostCreateManyAuthorInputEnvelope
   connect?: Prisma.PostWhereUniqueInput | Prisma.PostWhereUniqueInput[]
 }
 
 export type PostUncheckedCreateNestedManyWithoutAuthorInput = {
   create?:
-    | Prisma.XOR<
-        Prisma.PostCreateWithoutAuthorInput,
-        Prisma.PostUncheckedCreateWithoutAuthorInput
-      >
+    | Prisma.XOR<Prisma.PostCreateWithoutAuthorInput, Prisma.PostUncheckedCreateWithoutAuthorInput>
     | Prisma.PostCreateWithoutAuthorInput[]
     | Prisma.PostUncheckedCreateWithoutAuthorInput[]
-  connectOrCreate?:
-    | Prisma.PostCreateOrConnectWithoutAuthorInput
-    | Prisma.PostCreateOrConnectWithoutAuthorInput[]
+  connectOrCreate?: Prisma.PostCreateOrConnectWithoutAuthorInput | Prisma.PostCreateOrConnectWithoutAuthorInput[]
   createMany?: Prisma.PostCreateManyAuthorInputEnvelope
   connect?: Prisma.PostWhereUniqueInput | Prisma.PostWhereUniqueInput[]
 }
 
 export type PostUpdateManyWithoutAuthorNestedInput = {
   create?:
-    | Prisma.XOR<
-        Prisma.PostCreateWithoutAuthorInput,
-        Prisma.PostUncheckedCreateWithoutAuthorInput
-      >
+    | Prisma.XOR<Prisma.PostCreateWithoutAuthorInput, Prisma.PostUncheckedCreateWithoutAuthorInput>
     | Prisma.PostCreateWithoutAuthorInput[]
     | Prisma.PostUncheckedCreateWithoutAuthorInput[]
-  connectOrCreate?:
-    | Prisma.PostCreateOrConnectWithoutAuthorInput
-    | Prisma.PostCreateOrConnectWithoutAuthorInput[]
-  upsert?:
-    | Prisma.PostUpsertWithWhereUniqueWithoutAuthorInput
-    | Prisma.PostUpsertWithWhereUniqueWithoutAuthorInput[]
+  connectOrCreate?: Prisma.PostCreateOrConnectWithoutAuthorInput | Prisma.PostCreateOrConnectWithoutAuthorInput[]
+  upsert?: Prisma.PostUpsertWithWhereUniqueWithoutAuthorInput | Prisma.PostUpsertWithWhereUniqueWithoutAuthorInput[]
   createMany?: Prisma.PostCreateManyAuthorInputEnvelope
   set?: Prisma.PostWhereUniqueInput | Prisma.PostWhereUniqueInput[]
   disconnect?: Prisma.PostWhereUniqueInput | Prisma.PostWhereUniqueInput[]
   delete?: Prisma.PostWhereUniqueInput | Prisma.PostWhereUniqueInput[]
   connect?: Prisma.PostWhereUniqueInput | Prisma.PostWhereUniqueInput[]
-  update?:
-    | Prisma.PostUpdateWithWhereUniqueWithoutAuthorInput
-    | Prisma.PostUpdateWithWhereUniqueWithoutAuthorInput[]
-  updateMany?:
-    | Prisma.PostUpdateManyWithWhereWithoutAuthorInput
-    | Prisma.PostUpdateManyWithWhereWithoutAuthorInput[]
+  update?: Prisma.PostUpdateWithWhereUniqueWithoutAuthorInput | Prisma.PostUpdateWithWhereUniqueWithoutAuthorInput[]
+  updateMany?: Prisma.PostUpdateManyWithWhereWithoutAuthorInput | Prisma.PostUpdateManyWithWhereWithoutAuthorInput[]
   deleteMany?: Prisma.PostScalarWhereInput | Prisma.PostScalarWhereInput[]
 }
 
 export type PostUncheckedUpdateManyWithoutAuthorNestedInput = {
   create?:
-    | Prisma.XOR<
-        Prisma.PostCreateWithoutAuthorInput,
-        Prisma.PostUncheckedCreateWithoutAuthorInput
-      >
+    | Prisma.XOR<Prisma.PostCreateWithoutAuthorInput, Prisma.PostUncheckedCreateWithoutAuthorInput>
     | Prisma.PostCreateWithoutAuthorInput[]
     | Prisma.PostUncheckedCreateWithoutAuthorInput[]
-  connectOrCreate?:
-    | Prisma.PostCreateOrConnectWithoutAuthorInput
-    | Prisma.PostCreateOrConnectWithoutAuthorInput[]
-  upsert?:
-    | Prisma.PostUpsertWithWhereUniqueWithoutAuthorInput
-    | Prisma.PostUpsertWithWhereUniqueWithoutAuthorInput[]
+  connectOrCreate?: Prisma.PostCreateOrConnectWithoutAuthorInput | Prisma.PostCreateOrConnectWithoutAuthorInput[]
+  upsert?: Prisma.PostUpsertWithWhereUniqueWithoutAuthorInput | Prisma.PostUpsertWithWhereUniqueWithoutAuthorInput[]
   createMany?: Prisma.PostCreateManyAuthorInputEnvelope
   set?: Prisma.PostWhereUniqueInput | Prisma.PostWhereUniqueInput[]
   disconnect?: Prisma.PostWhereUniqueInput | Prisma.PostWhereUniqueInput[]
   delete?: Prisma.PostWhereUniqueInput | Prisma.PostWhereUniqueInput[]
   connect?: Prisma.PostWhereUniqueInput | Prisma.PostWhereUniqueInput[]
-  update?:
-    | Prisma.PostUpdateWithWhereUniqueWithoutAuthorInput
-    | Prisma.PostUpdateWithWhereUniqueWithoutAuthorInput[]
-  updateMany?:
-    | Prisma.PostUpdateManyWithWhereWithoutAuthorInput
-    | Prisma.PostUpdateManyWithWhereWithoutAuthorInput[]
+  update?: Prisma.PostUpdateWithWhereUniqueWithoutAuthorInput | Prisma.PostUpdateWithWhereUniqueWithoutAuthorInput[]
+  updateMany?: Prisma.PostUpdateManyWithWhereWithoutAuthorInput | Prisma.PostUpdateManyWithWhereWithoutAuthorInput[]
   deleteMany?: Prisma.PostScalarWhereInput | Prisma.PostScalarWhereInput[]
 }
 
@@ -499,10 +456,7 @@ export type PostUncheckedCreateWithoutAuthorInput = {
 
 export type PostCreateOrConnectWithoutAuthorInput = {
   where: Prisma.PostWhereUniqueInput
-  create: Prisma.XOR<
-    Prisma.PostCreateWithoutAuthorInput,
-    Prisma.PostUncheckedCreateWithoutAuthorInput
-  >
+  create: Prisma.XOR<Prisma.PostCreateWithoutAuthorInput, Prisma.PostUncheckedCreateWithoutAuthorInput>
 }
 
 export type PostCreateManyAuthorInputEnvelope = {
@@ -511,30 +465,18 @@ export type PostCreateManyAuthorInputEnvelope = {
 
 export type PostUpsertWithWhereUniqueWithoutAuthorInput = {
   where: Prisma.PostWhereUniqueInput
-  update: Prisma.XOR<
-    Prisma.PostUpdateWithoutAuthorInput,
-    Prisma.PostUncheckedUpdateWithoutAuthorInput
-  >
-  create: Prisma.XOR<
-    Prisma.PostCreateWithoutAuthorInput,
-    Prisma.PostUncheckedCreateWithoutAuthorInput
-  >
+  update: Prisma.XOR<Prisma.PostUpdateWithoutAuthorInput, Prisma.PostUncheckedUpdateWithoutAuthorInput>
+  create: Prisma.XOR<Prisma.PostCreateWithoutAuthorInput, Prisma.PostUncheckedCreateWithoutAuthorInput>
 }
 
 export type PostUpdateWithWhereUniqueWithoutAuthorInput = {
   where: Prisma.PostWhereUniqueInput
-  data: Prisma.XOR<
-    Prisma.PostUpdateWithoutAuthorInput,
-    Prisma.PostUncheckedUpdateWithoutAuthorInput
-  >
+  data: Prisma.XOR<Prisma.PostUpdateWithoutAuthorInput, Prisma.PostUncheckedUpdateWithoutAuthorInput>
 }
 
 export type PostUpdateManyWithWhereWithoutAuthorInput = {
   where: Prisma.PostScalarWhereInput
-  data: Prisma.XOR<
-    Prisma.PostUpdateManyMutationInput,
-    Prisma.PostUncheckedUpdateManyWithoutAuthorInput
-  >
+  data: Prisma.XOR<Prisma.PostUpdateManyMutationInput, Prisma.PostUncheckedUpdateManyWithoutAuthorInput>
 }
 
 export type PostScalarWhereInput = {
@@ -580,25 +522,22 @@ export type PostUncheckedUpdateManyWithoutAuthorInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
-export type PostSelect<
-  ExtArgs extends runtime.Types.Extensions.InternalArgs =
-    runtime.Types.Extensions.DefaultArgs,
-> = runtime.Types.Extensions.GetSelect<
-  {
-    id?: boolean
-    title?: boolean
-    content?: boolean
-    authorId?: boolean
-    createdAt?: boolean
-    updatedAt?: boolean
-    author?: boolean | Prisma.UserDefaultArgs<ExtArgs>
-  },
-  ExtArgs['result']['post']
->
+export type PostSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> =
+  runtime.Types.Extensions.GetSelect<
+    {
+      id?: boolean
+      title?: boolean
+      content?: boolean
+      authorId?: boolean
+      createdAt?: boolean
+      updatedAt?: boolean
+      author?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+    },
+    ExtArgs['result']['post']
+  >
 
 export type PostSelectCreateManyAndReturn<
-  ExtArgs extends runtime.Types.Extensions.InternalArgs =
-    runtime.Types.Extensions.DefaultArgs,
+  ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs,
 > = runtime.Types.Extensions.GetSelect<
   {
     id?: boolean
@@ -613,8 +552,7 @@ export type PostSelectCreateManyAndReturn<
 >
 
 export type PostSelectUpdateManyAndReturn<
-  ExtArgs extends runtime.Types.Extensions.InternalArgs =
-    runtime.Types.Extensions.DefaultArgs,
+  ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs,
 > = runtime.Types.Extensions.GetSelect<
   {
     id?: boolean
@@ -637,68 +575,59 @@ export type PostSelectScalar = {
   updatedAt?: boolean
 }
 
-export type PostOmit<
-  ExtArgs extends runtime.Types.Extensions.InternalArgs =
-    runtime.Types.Extensions.DefaultArgs,
-> = runtime.Types.Extensions.GetOmit<
-  'id' | 'title' | 'content' | 'authorId' | 'createdAt' | 'updatedAt',
-  ExtArgs['result']['post']
->
-export type PostInclude<
-  ExtArgs extends runtime.Types.Extensions.InternalArgs =
-    runtime.Types.Extensions.DefaultArgs,
-> = {
-  author?: boolean | Prisma.UserDefaultArgs<ExtArgs>
-}
+export type PostOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> =
+  runtime.Types.Extensions.GetOmit<
+    'id' | 'title' | 'content' | 'authorId' | 'createdAt' | 'updatedAt',
+    ExtArgs['result']['post']
+  >
+export type PostInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> =
+  {
+    author?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  }
 export type PostIncludeCreateManyAndReturn<
-  ExtArgs extends runtime.Types.Extensions.InternalArgs =
-    runtime.Types.Extensions.DefaultArgs,
+  ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs,
 > = {
   author?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }
 export type PostIncludeUpdateManyAndReturn<
-  ExtArgs extends runtime.Types.Extensions.InternalArgs =
-    runtime.Types.Extensions.DefaultArgs,
+  ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs,
 > = {
   author?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }
 
-export type $PostPayload<
-  ExtArgs extends runtime.Types.Extensions.InternalArgs =
-    runtime.Types.Extensions.DefaultArgs,
-> = {
-  name: 'Post'
-  objects: {
-    author: Prisma.$UserPayload<ExtArgs>
+export type $PostPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> =
+  {
+    name: 'Post'
+    objects: {
+      author: Prisma.$UserPayload<ExtArgs>
+    }
+    scalars: runtime.Types.Extensions.GetPayloadResult<
+      {
+        id: number
+        title: string
+        content: string
+        authorId: number
+        createdAt: Date
+        updatedAt: Date
+      },
+      ExtArgs['result']['post']
+    >
+    composites: {}
   }
-  scalars: runtime.Types.Extensions.GetPayloadResult<
-    {
-      id: number
-      title: string
-      content: string
-      authorId: number
-      createdAt: Date
-      updatedAt: Date
-    },
-    ExtArgs['result']['post']
-  >
-  composites: {}
-}
 
-export type PostGetPayload<
-  S extends boolean | null | undefined | PostDefaultArgs,
-> = runtime.Types.Result.GetResult<Prisma.$PostPayload, S>
+export type PostGetPayload<S extends boolean | null | undefined | PostDefaultArgs> = runtime.Types.Result.GetResult<
+  Prisma.$PostPayload,
+  S
+>
 
 export type PostCountArgs<
-  ExtArgs extends runtime.Types.Extensions.InternalArgs =
-    runtime.Types.Extensions.DefaultArgs,
+  ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs,
 > = Omit<PostFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
   select?: PostCountAggregateInputType | true
 }
 
 export interface PostDelegate<
-  ExtArgs extends runtime.Types.Extensions.InternalArgs =
-    runtime.Types.Extensions.DefaultArgs,
+  ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs,
   GlobalOmitOptions = {},
 > {
   [K: symbol]: {
@@ -719,12 +648,7 @@ export interface PostDelegate<
   findUnique<T extends PostFindUniqueArgs>(
     args: Prisma.SelectSubset<T, PostFindUniqueArgs<ExtArgs>>,
   ): Prisma.Prisma__PostClient<
-    runtime.Types.Result.GetResult<
-      Prisma.$PostPayload<ExtArgs>,
-      T,
-      'findUnique',
-      GlobalOmitOptions
-    > | null,
+    runtime.Types.Result.GetResult<Prisma.$PostPayload<ExtArgs>, T, 'findUnique', GlobalOmitOptions> | null,
     null,
     ExtArgs,
     GlobalOmitOptions
@@ -745,12 +669,7 @@ export interface PostDelegate<
   findUniqueOrThrow<T extends PostFindUniqueOrThrowArgs>(
     args: Prisma.SelectSubset<T, PostFindUniqueOrThrowArgs<ExtArgs>>,
   ): Prisma.Prisma__PostClient<
-    runtime.Types.Result.GetResult<
-      Prisma.$PostPayload<ExtArgs>,
-      T,
-      'findUniqueOrThrow',
-      GlobalOmitOptions
-    >,
+    runtime.Types.Result.GetResult<Prisma.$PostPayload<ExtArgs>, T, 'findUniqueOrThrow', GlobalOmitOptions>,
     never,
     ExtArgs,
     GlobalOmitOptions
@@ -772,12 +691,7 @@ export interface PostDelegate<
   findFirst<T extends PostFindFirstArgs>(
     args?: Prisma.SelectSubset<T, PostFindFirstArgs<ExtArgs>>,
   ): Prisma.Prisma__PostClient<
-    runtime.Types.Result.GetResult<
-      Prisma.$PostPayload<ExtArgs>,
-      T,
-      'findFirst',
-      GlobalOmitOptions
-    > | null,
+    runtime.Types.Result.GetResult<Prisma.$PostPayload<ExtArgs>, T, 'findFirst', GlobalOmitOptions> | null,
     null,
     ExtArgs,
     GlobalOmitOptions
@@ -800,12 +714,7 @@ export interface PostDelegate<
   findFirstOrThrow<T extends PostFindFirstOrThrowArgs>(
     args?: Prisma.SelectSubset<T, PostFindFirstOrThrowArgs<ExtArgs>>,
   ): Prisma.Prisma__PostClient<
-    runtime.Types.Result.GetResult<
-      Prisma.$PostPayload<ExtArgs>,
-      T,
-      'findFirstOrThrow',
-      GlobalOmitOptions
-    >,
+    runtime.Types.Result.GetResult<Prisma.$PostPayload<ExtArgs>, T, 'findFirstOrThrow', GlobalOmitOptions>,
     never,
     ExtArgs,
     GlobalOmitOptions
@@ -830,12 +739,7 @@ export interface PostDelegate<
   findMany<T extends PostFindManyArgs>(
     args?: Prisma.SelectSubset<T, PostFindManyArgs<ExtArgs>>,
   ): Prisma.PrismaPromise<
-    runtime.Types.Result.GetResult<
-      Prisma.$PostPayload<ExtArgs>,
-      T,
-      'findMany',
-      GlobalOmitOptions
-    >
+    runtime.Types.Result.GetResult<Prisma.$PostPayload<ExtArgs>, T, 'findMany', GlobalOmitOptions>
   >
 
   /**
@@ -853,12 +757,7 @@ export interface PostDelegate<
   create<T extends PostCreateArgs>(
     args: Prisma.SelectSubset<T, PostCreateArgs<ExtArgs>>,
   ): Prisma.Prisma__PostClient<
-    runtime.Types.Result.GetResult<
-      Prisma.$PostPayload<ExtArgs>,
-      T,
-      'create',
-      GlobalOmitOptions
-    >,
+    runtime.Types.Result.GetResult<Prisma.$PostPayload<ExtArgs>, T, 'create', GlobalOmitOptions>,
     never,
     ExtArgs,
     GlobalOmitOptions
@@ -905,12 +804,7 @@ export interface PostDelegate<
   createManyAndReturn<T extends PostCreateManyAndReturnArgs>(
     args?: Prisma.SelectSubset<T, PostCreateManyAndReturnArgs<ExtArgs>>,
   ): Prisma.PrismaPromise<
-    runtime.Types.Result.GetResult<
-      Prisma.$PostPayload<ExtArgs>,
-      T,
-      'createManyAndReturn',
-      GlobalOmitOptions
-    >
+    runtime.Types.Result.GetResult<Prisma.$PostPayload<ExtArgs>, T, 'createManyAndReturn', GlobalOmitOptions>
   >
 
   /**
@@ -928,12 +822,7 @@ export interface PostDelegate<
   delete<T extends PostDeleteArgs>(
     args: Prisma.SelectSubset<T, PostDeleteArgs<ExtArgs>>,
   ): Prisma.Prisma__PostClient<
-    runtime.Types.Result.GetResult<
-      Prisma.$PostPayload<ExtArgs>,
-      T,
-      'delete',
-      GlobalOmitOptions
-    >,
+    runtime.Types.Result.GetResult<Prisma.$PostPayload<ExtArgs>, T, 'delete', GlobalOmitOptions>,
     never,
     ExtArgs,
     GlobalOmitOptions
@@ -957,12 +846,7 @@ export interface PostDelegate<
   update<T extends PostUpdateArgs>(
     args: Prisma.SelectSubset<T, PostUpdateArgs<ExtArgs>>,
   ): Prisma.Prisma__PostClient<
-    runtime.Types.Result.GetResult<
-      Prisma.$PostPayload<ExtArgs>,
-      T,
-      'update',
-      GlobalOmitOptions
-    >,
+    runtime.Types.Result.GetResult<Prisma.$PostPayload<ExtArgs>, T, 'update', GlobalOmitOptions>,
     never,
     ExtArgs,
     GlobalOmitOptions
@@ -1036,12 +920,7 @@ export interface PostDelegate<
   updateManyAndReturn<T extends PostUpdateManyAndReturnArgs>(
     args: Prisma.SelectSubset<T, PostUpdateManyAndReturnArgs<ExtArgs>>,
   ): Prisma.PrismaPromise<
-    runtime.Types.Result.GetResult<
-      Prisma.$PostPayload<ExtArgs>,
-      T,
-      'updateManyAndReturn',
-      GlobalOmitOptions
-    >
+    runtime.Types.Result.GetResult<Prisma.$PostPayload<ExtArgs>, T, 'updateManyAndReturn', GlobalOmitOptions>
   >
 
   /**
@@ -1064,12 +943,7 @@ export interface PostDelegate<
   upsert<T extends PostUpsertArgs>(
     args: Prisma.SelectSubset<T, PostUpsertArgs<ExtArgs>>,
   ): Prisma.Prisma__PostClient<
-    runtime.Types.Result.GetResult<
-      Prisma.$PostPayload<ExtArgs>,
-      T,
-      'upsert',
-      GlobalOmitOptions
-    >,
+    runtime.Types.Result.GetResult<Prisma.$PostPayload<ExtArgs>, T, 'upsert', GlobalOmitOptions>,
     never,
     ExtArgs,
     GlobalOmitOptions
@@ -1146,16 +1020,11 @@ export interface PostDelegate<
    **/
   groupBy<
     T extends PostGroupByArgs,
-    HasSelectOrTake extends Prisma.Or<
-      Prisma.Extends<'skip', Prisma.Keys<T>>,
-      Prisma.Extends<'take', Prisma.Keys<T>>
-    >,
+    HasSelectOrTake extends Prisma.Or<Prisma.Extends<'skip', Prisma.Keys<T>>, Prisma.Extends<'take', Prisma.Keys<T>>>,
     OrderByArg extends Prisma.True extends HasSelectOrTake
       ? { orderBy: PostGroupByArgs['orderBy'] }
       : { orderBy?: PostGroupByArgs['orderBy'] },
-    OrderFields extends Prisma.ExcludeUnderscoreKeys<
-      Prisma.Keys<Prisma.MaybeTupleToUnion<T['orderBy']>>
-    >,
+    OrderFields extends Prisma.ExcludeUnderscoreKeys<Prisma.Keys<Prisma.MaybeTupleToUnion<T['orderBy']>>>,
     ByFields extends Prisma.MaybeTupleToUnion<T['by']>,
     ByValid extends Prisma.Has<ByFields, OrderFields>,
     HavingFields extends Prisma.GetHavingFields<T['having']>,
@@ -1169,12 +1038,7 @@ export interface PostDelegate<
               ? never
               : P extends string
                 ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
-                : [
-                    Error,
-                    'Field ',
-                    P,
-                    ` in "having" needs to be provided in "by"`,
-                  ]
+                : [Error, 'Field ', P, ` in "having" needs to be provided in "by"`]
           }[HavingFields]
         : 'take' extends Prisma.Keys<T>
           ? 'orderBy' extends Prisma.Keys<T>
@@ -1204,11 +1068,8 @@ export interface PostDelegate<
                     : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
                 }[OrderFields],
   >(
-    args: Prisma.SubsetIntersection<T, PostGroupByArgs, OrderByArg> &
-      InputErrors,
-  ): {} extends InputErrors
-    ? GetPostGroupByPayload<T>
-    : Prisma.PrismaPromise<InputErrors>
+    args: Prisma.SubsetIntersection<T, PostGroupByArgs, OrderByArg> & InputErrors,
+  ): {} extends InputErrors ? GetPostGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
   /**
    * Fields of the Post model
    */
@@ -1224,21 +1085,14 @@ export interface PostDelegate<
 export interface Prisma__PostClient<
   T,
   Null = never,
-  ExtArgs extends runtime.Types.Extensions.InternalArgs =
-    runtime.Types.Extensions.DefaultArgs,
+  ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs,
   GlobalOmitOptions = {},
 > extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: 'PrismaPromise'
   author<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(
     args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>,
   ): Prisma.Prisma__UserClient<
-    | runtime.Types.Result.GetResult<
-        Prisma.$UserPayload<ExtArgs>,
-        T,
-        'findUniqueOrThrow',
-        GlobalOmitOptions
-      >
-    | Null,
+    runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, 'findUniqueOrThrow', GlobalOmitOptions> | Null,
     Null,
     ExtArgs,
     GlobalOmitOptions
@@ -1250,14 +1104,8 @@ export interface Prisma__PostClient<
    * @returns A Promise for the completion of which ever callback is executed.
    */
   then<TResult1 = T, TResult2 = never>(
-    onfulfilled?:
-      | ((value: T) => TResult1 | PromiseLike<TResult1>)
-      | undefined
-      | null,
-    onrejected?:
-      | ((reason: any) => TResult2 | PromiseLike<TResult2>)
-      | undefined
-      | null,
+    onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null,
+    onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null,
   ): runtime.Types.Utils.JsPromise<TResult1 | TResult2>
   /**
    * Attaches a callback for only the rejection of the Promise.
@@ -1265,10 +1113,7 @@ export interface Prisma__PostClient<
    * @returns A Promise for the completion of the callback.
    */
   catch<TResult = never>(
-    onrejected?:
-      | ((reason: any) => TResult | PromiseLike<TResult>)
-      | undefined
-      | null,
+    onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null,
   ): runtime.Types.Utils.JsPromise<T | TResult>
   /**
    * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
@@ -1276,9 +1121,7 @@ export interface Prisma__PostClient<
    * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
    * @returns A Promise for the completion of the callback.
    */
-  finally(
-    onfinally?: (() => void) | undefined | null,
-  ): runtime.Types.Utils.JsPromise<T>
+  finally(onfinally?: (() => void) | undefined | null): runtime.Types.Utils.JsPromise<T>
 }
 
 /**
@@ -1298,8 +1141,7 @@ export interface PostFieldRefs {
  * Post findUnique
  */
 export type PostFindUniqueArgs<
-  ExtArgs extends runtime.Types.Extensions.InternalArgs =
-    runtime.Types.Extensions.DefaultArgs,
+  ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs,
 > = {
   /**
    * Select specific fields to fetch from the Post
@@ -1323,8 +1165,7 @@ export type PostFindUniqueArgs<
  * Post findUniqueOrThrow
  */
 export type PostFindUniqueOrThrowArgs<
-  ExtArgs extends runtime.Types.Extensions.InternalArgs =
-    runtime.Types.Extensions.DefaultArgs,
+  ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs,
 > = {
   /**
    * Select specific fields to fetch from the Post
@@ -1348,8 +1189,7 @@ export type PostFindUniqueOrThrowArgs<
  * Post findFirst
  */
 export type PostFindFirstArgs<
-  ExtArgs extends runtime.Types.Extensions.InternalArgs =
-    runtime.Types.Extensions.DefaultArgs,
+  ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs,
 > = {
   /**
    * Select specific fields to fetch from the Post
@@ -1372,9 +1212,7 @@ export type PostFindFirstArgs<
    *
    * Determine the order of Posts to fetch.
    */
-  orderBy?:
-    | Prisma.PostOrderByWithRelationInput
-    | Prisma.PostOrderByWithRelationInput[]
+  orderBy?: Prisma.PostOrderByWithRelationInput | Prisma.PostOrderByWithRelationInput[]
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
    *
@@ -1405,8 +1243,7 @@ export type PostFindFirstArgs<
  * Post findFirstOrThrow
  */
 export type PostFindFirstOrThrowArgs<
-  ExtArgs extends runtime.Types.Extensions.InternalArgs =
-    runtime.Types.Extensions.DefaultArgs,
+  ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs,
 > = {
   /**
    * Select specific fields to fetch from the Post
@@ -1429,9 +1266,7 @@ export type PostFindFirstOrThrowArgs<
    *
    * Determine the order of Posts to fetch.
    */
-  orderBy?:
-    | Prisma.PostOrderByWithRelationInput
-    | Prisma.PostOrderByWithRelationInput[]
+  orderBy?: Prisma.PostOrderByWithRelationInput | Prisma.PostOrderByWithRelationInput[]
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
    *
@@ -1462,8 +1297,7 @@ export type PostFindFirstOrThrowArgs<
  * Post findMany
  */
 export type PostFindManyArgs<
-  ExtArgs extends runtime.Types.Extensions.InternalArgs =
-    runtime.Types.Extensions.DefaultArgs,
+  ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs,
 > = {
   /**
    * Select specific fields to fetch from the Post
@@ -1486,9 +1320,7 @@ export type PostFindManyArgs<
    *
    * Determine the order of Posts to fetch.
    */
-  orderBy?:
-    | Prisma.PostOrderByWithRelationInput
-    | Prisma.PostOrderByWithRelationInput[]
+  orderBy?: Prisma.PostOrderByWithRelationInput | Prisma.PostOrderByWithRelationInput[]
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
    *
@@ -1514,8 +1346,7 @@ export type PostFindManyArgs<
  * Post create
  */
 export type PostCreateArgs<
-  ExtArgs extends runtime.Types.Extensions.InternalArgs =
-    runtime.Types.Extensions.DefaultArgs,
+  ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs,
 > = {
   /**
    * Select specific fields to fetch from the Post
@@ -1539,8 +1370,7 @@ export type PostCreateArgs<
  * Post createMany
  */
 export type PostCreateManyArgs<
-  ExtArgs extends runtime.Types.Extensions.InternalArgs =
-    runtime.Types.Extensions.DefaultArgs,
+  ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs,
 > = {
   /**
    * The data used to create many Posts.
@@ -1552,8 +1382,7 @@ export type PostCreateManyArgs<
  * Post createManyAndReturn
  */
 export type PostCreateManyAndReturnArgs<
-  ExtArgs extends runtime.Types.Extensions.InternalArgs =
-    runtime.Types.Extensions.DefaultArgs,
+  ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs,
 > = {
   /**
    * Select specific fields to fetch from the Post
@@ -1577,8 +1406,7 @@ export type PostCreateManyAndReturnArgs<
  * Post update
  */
 export type PostUpdateArgs<
-  ExtArgs extends runtime.Types.Extensions.InternalArgs =
-    runtime.Types.Extensions.DefaultArgs,
+  ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs,
 > = {
   /**
    * Select specific fields to fetch from the Post
@@ -1606,16 +1434,12 @@ export type PostUpdateArgs<
  * Post updateMany
  */
 export type PostUpdateManyArgs<
-  ExtArgs extends runtime.Types.Extensions.InternalArgs =
-    runtime.Types.Extensions.DefaultArgs,
+  ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs,
 > = {
   /**
    * The data used to update Posts.
    */
-  data: Prisma.XOR<
-    Prisma.PostUpdateManyMutationInput,
-    Prisma.PostUncheckedUpdateManyInput
-  >
+  data: Prisma.XOR<Prisma.PostUpdateManyMutationInput, Prisma.PostUncheckedUpdateManyInput>
   /**
    * Filter which Posts to update
    */
@@ -1630,8 +1454,7 @@ export type PostUpdateManyArgs<
  * Post updateManyAndReturn
  */
 export type PostUpdateManyAndReturnArgs<
-  ExtArgs extends runtime.Types.Extensions.InternalArgs =
-    runtime.Types.Extensions.DefaultArgs,
+  ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs,
 > = {
   /**
    * Select specific fields to fetch from the Post
@@ -1644,10 +1467,7 @@ export type PostUpdateManyAndReturnArgs<
   /**
    * The data used to update Posts.
    */
-  data: Prisma.XOR<
-    Prisma.PostUpdateManyMutationInput,
-    Prisma.PostUncheckedUpdateManyInput
-  >
+  data: Prisma.XOR<Prisma.PostUpdateManyMutationInput, Prisma.PostUncheckedUpdateManyInput>
   /**
    * Filter which Posts to update
    */
@@ -1666,8 +1486,7 @@ export type PostUpdateManyAndReturnArgs<
  * Post upsert
  */
 export type PostUpsertArgs<
-  ExtArgs extends runtime.Types.Extensions.InternalArgs =
-    runtime.Types.Extensions.DefaultArgs,
+  ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs,
 > = {
   /**
    * Select specific fields to fetch from the Post
@@ -1699,8 +1518,7 @@ export type PostUpsertArgs<
  * Post delete
  */
 export type PostDeleteArgs<
-  ExtArgs extends runtime.Types.Extensions.InternalArgs =
-    runtime.Types.Extensions.DefaultArgs,
+  ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs,
 > = {
   /**
    * Select specific fields to fetch from the Post
@@ -1724,8 +1542,7 @@ export type PostDeleteArgs<
  * Post deleteMany
  */
 export type PostDeleteManyArgs<
-  ExtArgs extends runtime.Types.Extensions.InternalArgs =
-    runtime.Types.Extensions.DefaultArgs,
+  ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs,
 > = {
   /**
    * Filter which Posts to delete
@@ -1741,8 +1558,7 @@ export type PostDeleteManyArgs<
  * Post without action
  */
 export type PostDefaultArgs<
-  ExtArgs extends runtime.Types.Extensions.InternalArgs =
-    runtime.Types.Extensions.DefaultArgs,
+  ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs,
 > = {
   /**
    * Select specific fields to fetch from the Post

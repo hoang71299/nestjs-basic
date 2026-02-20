@@ -22,15 +22,9 @@ export type * from './prismaNamespace.js'
 export const Decimal = runtime.Decimal
 
 export const NullTypes = {
-  DbNull: runtime.NullTypes.DbNull as new (
-    secret: never,
-  ) => typeof runtime.DbNull,
-  JsonNull: runtime.NullTypes.JsonNull as new (
-    secret: never,
-  ) => typeof runtime.JsonNull,
-  AnyNull: runtime.NullTypes.AnyNull as new (
-    secret: never,
-  ) => typeof runtime.AnyNull,
+  DbNull: runtime.NullTypes.DbNull as new (secret: never) => typeof runtime.DbNull,
+  JsonNull: runtime.NullTypes.JsonNull as new (secret: never) => typeof runtime.JsonNull,
+  AnyNull: runtime.NullTypes.AnyNull as new (secret: never) => typeof runtime.AnyNull,
 }
 /**
  * Helper for filtering JSON entries that have `null` on the database (empty on the db)
@@ -69,8 +63,7 @@ export const TransactionIsolationLevel = runtime.makeStrictEnum({
   Serializable: 'Serializable',
 } as const)
 
-export type TransactionIsolationLevel =
-  (typeof TransactionIsolationLevel)[keyof typeof TransactionIsolationLevel]
+export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof typeof TransactionIsolationLevel]
 
 export const UserScalarFieldEnum = {
   id: 'id',
@@ -81,8 +74,7 @@ export const UserScalarFieldEnum = {
   updatedAt: 'updatedAt',
 } as const
 
-export type UserScalarFieldEnum =
-  (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
+export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
 
 export const PostScalarFieldEnum = {
   id: 'id',
@@ -93,8 +85,7 @@ export const PostScalarFieldEnum = {
   updatedAt: 'updatedAt',
 } as const
 
-export type PostScalarFieldEnum =
-  (typeof PostScalarFieldEnum)[keyof typeof PostScalarFieldEnum]
+export type PostScalarFieldEnum = (typeof PostScalarFieldEnum)[keyof typeof PostScalarFieldEnum]
 
 export const RefreshTokenScalarFieldEnum = {
   token: 'token',
@@ -103,8 +94,7 @@ export const RefreshTokenScalarFieldEnum = {
   createdAt: 'createdAt',
 } as const
 
-export type RefreshTokenScalarFieldEnum =
-  (typeof RefreshTokenScalarFieldEnum)[keyof typeof RefreshTokenScalarFieldEnum]
+export type RefreshTokenScalarFieldEnum = (typeof RefreshTokenScalarFieldEnum)[keyof typeof RefreshTokenScalarFieldEnum]
 
 export const SortOrder = {
   asc: 'asc',

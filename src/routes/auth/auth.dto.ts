@@ -1,5 +1,6 @@
 import { Exclude, Type } from 'class-transformer'
-import { IsString } from 'class-validator'
+import { IsString, Length } from 'class-validator'
+import { Match } from 'src/shared/decorators/custom-validator.decorator'
 import { SuccessResponse } from 'src/shared/share.dto'
 
 export class LoginBodyDTO {
@@ -7,6 +8,7 @@ export class LoginBodyDTO {
   email!: string
 
   @IsString()
+  @Length(6, 20, { message: 'Password must be between 6 and 20 characters' })
   password!: string
 }
 
@@ -22,6 +24,7 @@ export class RegisterBodyDTO extends LoginBodyDTO {
   name!: string
 
   @IsString()
+  @Match('password', { message: "Mật khẩu không được trùng" })
   confirmPassword!: string
 }
 
@@ -51,4 +54,4 @@ export class refreshTokenBodyDTO {
   refreshToken!: string
 }
 
-export class refreshTokenResDTO extends LoginBodyDTO {}
+export class refreshTokenResDTO extends LoginBodyDTO { }

@@ -1,9 +1,4 @@
-import {
-  ConflictException,
-  Injectable,
-  UnauthorizedException,
-  UnprocessableEntityException,
-} from '@nestjs/common'
+import { ConflictException, Injectable, UnauthorizedException, UnprocessableEntityException } from '@nestjs/common'
 import { Prisma } from 'src/generated/prisma/client'
 import { LoginBodyDTO, RegisterBodyDTO } from 'src/routes/auth/auth.dto'
 import { HashingService } from 'src/shared/services/hashing.service'
@@ -30,10 +25,7 @@ export class AuthService {
       })
       return user
     } catch (error) {
-      if (
-        error instanceof Prisma.PrismaClientKnownRequestError &&
-        error.code === 'P2002'
-      ) {
+      if (error instanceof Prisma.PrismaClientKnownRequestError && error.code === 'P2002') {
         throw new ConflictException('Email already exists')
       }
       throw error
@@ -49,10 +41,7 @@ export class AuthService {
       throw new UnauthorizedException('Account not exits')
     }
 
-    const isPasswordMatch = await this.hashingService.compare(
-      body.password,
-      user.password,
-    )
+    const isPasswordMatch = await this.hashingService.compare(body.password, user.password)
     if (!isPasswordMatch) {
       throw new UnprocessableEntityException([
         {
@@ -70,8 +59,7 @@ export class AuthService {
       this.tokenService.signAccessToken(payload),
       this.tokenService.signRefreshToken(payload),
     ])
-    const decodeRefreshToken =
-      await this.tokenService.verifyRefreshToken(refreshToken)
+    const decodeRefreshToken = await this.tokenService.verifyRefreshToken(refreshToken)
     await this.prismaService.refreshToken.create({
       data: {
         token: refreshToken,
@@ -84,8 +72,7 @@ export class AuthService {
   async refreshToken(refreshToken: string) {
     try {
       //kiem tra refresh token co hop le hay khong
-      const { userId } =
-        await this.tokenService.verifyRefreshToken(refreshToken)
+      const { userId } = await this.tokenService.verifyRefreshToken(refreshToken)
       // kiem tra xem refreshtoken co trong database ko
       await this.prismaService.refreshToken.findUniqueOrThrow({
         where: {
@@ -102,10 +89,7 @@ export class AuthService {
       return this.generateToken({ userId })
     } catch (error) {
       // truong hop da refreshtoken roi hay thogn bao cho user biet
-      if (
-        error instanceof Prisma.PrismaClientKnownRequestError &&
-        error.code === 'P2025'
-      ) {
+      if (error instanceof Prisma.PrismaClientKnownRequestError && error.code === 'P2025') {
         throw new UnauthorizedException('Refresh token is invoked')
       }
       throw new UnauthorizedException('Refresh token is invalid')

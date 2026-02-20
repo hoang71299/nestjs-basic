@@ -28,23 +28,17 @@ export type PrismaPromise<T> = runtime.Types.Public.PrismaPromise<T>
  * Prisma Errors
  */
 
-export const PrismaClientKnownRequestError =
-  runtime.PrismaClientKnownRequestError
-export type PrismaClientKnownRequestError =
-  runtime.PrismaClientKnownRequestError
+export const PrismaClientKnownRequestError = runtime.PrismaClientKnownRequestError
+export type PrismaClientKnownRequestError = runtime.PrismaClientKnownRequestError
 
-export const PrismaClientUnknownRequestError =
-  runtime.PrismaClientUnknownRequestError
-export type PrismaClientUnknownRequestError =
-  runtime.PrismaClientUnknownRequestError
+export const PrismaClientUnknownRequestError = runtime.PrismaClientUnknownRequestError
+export type PrismaClientUnknownRequestError = runtime.PrismaClientUnknownRequestError
 
 export const PrismaClientRustPanicError = runtime.PrismaClientRustPanicError
 export type PrismaClientRustPanicError = runtime.PrismaClientRustPanicError
 
-export const PrismaClientInitializationError =
-  runtime.PrismaClientInitializationError
-export type PrismaClientInitializationError =
-  runtime.PrismaClientInitializationError
+export const PrismaClientInitializationError = runtime.PrismaClientInitializationError
+export type PrismaClientInitializationError = runtime.PrismaClientInitializationError
 
 export const PrismaClientValidationError = runtime.PrismaClientValidationError
 export type PrismaClientValidationError = runtime.PrismaClientValidationError
@@ -72,19 +66,9 @@ export type DecimalJsLike = runtime.DecimalJsLike
  */
 export type Extension = runtime.Types.Extensions.UserArgs
 export const getExtensionContext = runtime.Extensions.getExtensionContext
-export type Args<T, F extends runtime.Operation> = runtime.Types.Public.Args<
-  T,
-  F
->
-export type Payload<
-  T,
-  F extends runtime.Operation = never,
-> = runtime.Types.Public.Payload<T, F>
-export type Result<
-  T,
-  A,
-  F extends runtime.Operation,
-> = runtime.Types.Public.Result<T, A, F>
+export type Args<T, F extends runtime.Operation> = runtime.Types.Public.Args<T, F>
+export type Payload<T, F extends runtime.Operation = never> = runtime.Types.Public.Payload<T, F>
+export type Result<T, A, F extends runtime.Operation> = runtime.Types.Public.Result<T, A, F>
 export type Exact<A, W> = runtime.Types.Public.Exact<A, W>
 
 export type PrismaVersion = {
@@ -114,15 +98,9 @@ export type InputJsonArray = runtime.InputJsonArray
 export type InputJsonValue = runtime.InputJsonValue
 
 export const NullTypes = {
-  DbNull: runtime.NullTypes.DbNull as new (
-    secret: never,
-  ) => typeof runtime.DbNull,
-  JsonNull: runtime.NullTypes.JsonNull as new (
-    secret: never,
-  ) => typeof runtime.JsonNull,
-  AnyNull: runtime.NullTypes.AnyNull as new (
-    secret: never,
-  ) => typeof runtime.AnyNull,
+  DbNull: runtime.NullTypes.DbNull as new (secret: never) => typeof runtime.DbNull,
+  JsonNull: runtime.NullTypes.JsonNull as new (secret: never) => typeof runtime.JsonNull,
+  AnyNull: runtime.NullTypes.AnyNull as new (secret: never) => typeof runtime.AnyNull,
 }
 /**
  * Helper for filtering JSON entries that have `null` on the database (empty on the db)
@@ -199,11 +177,7 @@ type Without<T, U> = { [P in Exclude<keyof T, keyof U>]?: never }
  * XOR is needed to have a real mutually exclusive union type
  * https://stackoverflow.com/questions/42123407/does-typescript-support-mutually-exclusive-types
  */
-export type XOR<T, U> = T extends object
-  ? U extends object
-    ? (Without<T, U> & U) | (Without<U, T> & T)
-    : U
-  : T
+export type XOR<T, U> = T extends object ? (U extends object ? (Without<T, U> & U) | (Without<U, T> & T) : U) : T
 
 /**
  * Is T a Record?
@@ -245,11 +219,9 @@ type _Either<O extends object, K extends Key, strict extends Boolean> = {
   0: EitherLoose<O, K>
 }[strict]
 
-export type Either<
-  O extends object,
-  K extends Key,
-  strict extends Boolean = 1,
-> = O extends unknown ? _Either<O, K, strict> : never
+export type Either<O extends object, K extends Key, strict extends Boolean = 1> = O extends unknown
+  ? _Either<O, K, strict>
+  : never
 
 export type Union = any
 
@@ -258,9 +230,7 @@ export type PatchUndefined<O extends object, O1 extends object> = {
 } & {}
 
 /** Helper Types for "Merge" **/
-export type IntersectOf<U extends Union> = (
-  U extends unknown ? (k: U) => void : never
-) extends (k: infer I) => void
+export type IntersectOf<U extends Union> = (U extends unknown ? (k: U) => void : never) extends (k: infer I) => void
   ? I
   : never
 
@@ -279,9 +249,7 @@ type _Merge<U extends object> = IntersectOf<
 
 type Key = string | number | symbol
 type AtStrict<O extends object, K extends Key> = O[K & keyof O]
-type AtLoose<O extends object, K extends Key> = O extends unknown
-  ? AtStrict<O, K>
-  : never
+type AtLoose<O extends object, K extends Key> = O extends unknown ? AtStrict<O, K> : never
 export type At<O extends object, K extends Key, strict extends Boolean = 1> = {
   1: AtStrict<O, K>
   0: AtLoose<O, K>
@@ -307,15 +275,11 @@ type NoExpand<T> = T extends unknown ? T : never
 // this type assumes the passed object is entirely optional
 export type AtLeast<O extends object, K extends string> = NoExpand<
   O extends unknown
-    ?
-        | (K extends keyof O ? { [P in K]: O[P] } & O : O)
-        | ({ [P in keyof O as P extends K ? P : never]-?: O[P] } & O)
+    ? (K extends keyof O ? { [P in K]: O[P] } & O : O) | ({ [P in keyof O as P extends K ? P : never]-?: O[P] } & O)
     : never
 >
 
-type _Strict<U, _U = U> = U extends unknown
-  ? U & OptionalFlat<_Record<Exclude<Keys<_U>, keyof U>, never>>
-  : never
+type _Strict<U, _U = U> = U extends unknown ? U & OptionalFlat<_Record<Exclude<Keys<_U>, keyof U>, never>> : never
 
 export type Strict<U extends object> = ComputeRaw<_Strict<U>>
 /** End Helper Types for "Merge" **/
@@ -339,9 +303,7 @@ export type Extends<A1 extends any, A2 extends any> = [A1] extends [never]
     ? 1
     : 0
 
-export type Has<U extends Union, U1 extends Union> = Not<
-  Extends<Exclude<U1, U>, U1>
->
+export type Has<U extends Union, U1 extends Union> = Not<Extends<Exclude<U1, U>, U1>>
 
 export type Or<B1 extends Boolean, B2 extends Boolean> = {
   0: {
@@ -362,21 +324,15 @@ export type GetScalarType<T, O> = O extends object
     }
   : never
 
-type FieldPaths<T, U = Omit<T, '_avg' | '_sum' | '_count' | '_min' | '_max'>> =
-  IsObject<T> extends True ? U : T
+type FieldPaths<T, U = Omit<T, '_avg' | '_sum' | '_count' | '_min' | '_max'>> = IsObject<T> extends True ? U : T
 
 export type GetHavingFields<T> = {
-  [K in keyof T]: Or<
-    Or<Extends<'OR', K>, Extends<'AND', K>>,
-    Extends<'NOT', K>
-  > extends True
+  [K in keyof T]: Or<Or<Extends<'OR', K>, Extends<'AND', K>>, Extends<'NOT', K>> extends True
     ? // infer is only needed to not hit TS limit
       // based on the brilliant idea of Pierre-Antoine Mills
       // https://github.com/microsoft/TypeScript/issues/30188#issuecomment-478938437
       T[K] extends infer TK
-      ? GetHavingFields<
-          UnEnumerate<TK> extends object ? Merge<UnEnumerate<TK>> : never
-        >
+      ? GetHavingFields<UnEnumerate<TK> extends object ? Merge<UnEnumerate<TK>> : never>
       : never
     : {} extends FieldPaths<T[K]>
       ? never
@@ -393,23 +349,16 @@ export type MaybeTupleToUnion<T> = T extends any[] ? TupleToUnion<T> : T
 /**
  * Like `Pick`, but additionally can also accept an array of keys
  */
-export type PickEnumerable<
-  T,
-  K extends Enumerable<keyof T> | keyof T,
-> = Prisma__Pick<T, MaybeTupleToUnion<K>>
+export type PickEnumerable<T, K extends Enumerable<keyof T> | keyof T> = Prisma__Pick<T, MaybeTupleToUnion<K>>
 
 /**
  * Exclude all keys with underscores
  */
-export type ExcludeUnderscoreKeys<T extends string> = T extends `_${string}`
-  ? never
-  : T
+export type ExcludeUnderscoreKeys<T extends string> = T extends `_${string}` ? never : T
 
 export type FieldRef<Model, FieldType> = runtime.FieldRef<Model, FieldType>
 
-type FieldRefInputType<Model, FieldType> = Model extends never
-  ? never
-  : FieldRef<Model, FieldType>
+type FieldRefInputType<Model, FieldType> = Model extends never ? never : FieldRef<Model, FieldType>
 
 export const ModelName = {
   User: 'User',
@@ -419,8 +368,7 @@ export const ModelName = {
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
 
-export interface TypeMapCb<GlobalOmitOptions = {}> extends runtime.Types.Utils
-  .Fn<
+export interface TypeMapCb<GlobalOmitOptions = {}> extends runtime.Types.Utils.Fn<
   { extArgs: runtime.Types.Extensions.InternalArgs },
   runtime.Types.Utils.Record<string, any>
 > {
@@ -428,8 +376,7 @@ export interface TypeMapCb<GlobalOmitOptions = {}> extends runtime.Types.Utils
 }
 
 export type TypeMap<
-  ExtArgs extends runtime.Types.Extensions.InternalArgs =
-    runtime.Types.Extensions.DefaultArgs,
+  ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs,
   GlobalOmitOptions = {},
 > = {
   globalOmitOptions: {
@@ -510,9 +457,7 @@ export type TypeMap<
         }
         count: {
           args: Prisma.UserCountArgs<ExtArgs>
-          result:
-            | runtime.Types.Utils.Optional<Prisma.UserCountAggregateOutputType>
-            | number
+          result: runtime.Types.Utils.Optional<Prisma.UserCountAggregateOutputType> | number
         }
       }
     }
@@ -586,9 +531,7 @@ export type TypeMap<
         }
         count: {
           args: Prisma.PostCountArgs<ExtArgs>
-          result:
-            | runtime.Types.Utils.Optional<Prisma.PostCountAggregateOutputType>
-            | number
+          result: runtime.Types.Utils.Optional<Prisma.PostCountAggregateOutputType> | number
         }
       }
     }
@@ -662,9 +605,7 @@ export type TypeMap<
         }
         count: {
           args: Prisma.RefreshTokenCountArgs<ExtArgs>
-          result:
-            | runtime.Types.Utils.Optional<Prisma.RefreshTokenCountAggregateOutputType>
-            | number
+          result: runtime.Types.Utils.Optional<Prisma.RefreshTokenCountAggregateOutputType> | number
         }
       }
     }
@@ -701,8 +642,7 @@ export const TransactionIsolationLevel = runtime.makeStrictEnum({
   Serializable: 'Serializable',
 } as const)
 
-export type TransactionIsolationLevel =
-  (typeof TransactionIsolationLevel)[keyof typeof TransactionIsolationLevel]
+export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof typeof TransactionIsolationLevel]
 
 export const UserScalarFieldEnum = {
   id: 'id',
@@ -713,8 +653,7 @@ export const UserScalarFieldEnum = {
   updatedAt: 'updatedAt',
 } as const
 
-export type UserScalarFieldEnum =
-  (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
+export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
 
 export const PostScalarFieldEnum = {
   id: 'id',
@@ -725,8 +664,7 @@ export const PostScalarFieldEnum = {
   updatedAt: 'updatedAt',
 } as const
 
-export type PostScalarFieldEnum =
-  (typeof PostScalarFieldEnum)[keyof typeof PostScalarFieldEnum]
+export type PostScalarFieldEnum = (typeof PostScalarFieldEnum)[keyof typeof PostScalarFieldEnum]
 
 export const RefreshTokenScalarFieldEnum = {
   token: 'token',
@@ -735,8 +673,7 @@ export const RefreshTokenScalarFieldEnum = {
   createdAt: 'createdAt',
 } as const
 
-export type RefreshTokenScalarFieldEnum =
-  (typeof RefreshTokenScalarFieldEnum)[keyof typeof RefreshTokenScalarFieldEnum]
+export type RefreshTokenScalarFieldEnum = (typeof RefreshTokenScalarFieldEnum)[keyof typeof RefreshTokenScalarFieldEnum]
 
 export const SortOrder = {
   asc: 'asc',
@@ -752,34 +689,22 @@ export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder]
 /**
  * Reference to a field of type 'Int'
  */
-export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<
-  $PrismaModel,
-  'Int'
->
+export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
 
 /**
  * Reference to a field of type 'String'
  */
-export type StringFieldRefInput<$PrismaModel> = FieldRefInputType<
-  $PrismaModel,
-  'String'
->
+export type StringFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'String'>
 
 /**
  * Reference to a field of type 'DateTime'
  */
-export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<
-  $PrismaModel,
-  'DateTime'
->
+export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime'>
 
 /**
  * Reference to a field of type 'Float'
  */
-export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<
-  $PrismaModel,
-  'Float'
->
+export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
 
 /**
  * Batch Payload for updateMany & deleteMany & createMany
@@ -788,8 +713,7 @@ export type BatchPayload = {
   count: number
 }
 
-export const defineExtension = runtime.Extensions
-  .defineExtension as unknown as runtime.Types.Extensions.ExtendsHook<
+export const defineExtension = runtime.Extensions.defineExtension as unknown as runtime.Types.Extensions.ExtendsHook<
   'define',
   TypeMapCb,
   runtime.Types.Extensions.DefaultArgs
@@ -898,12 +822,9 @@ export type LogDefinition = {
 
 export type CheckIsLogLevel<T> = T extends LogLevel ? T : never
 
-export type GetLogType<T> = CheckIsLogLevel<
-  T extends LogDefinition ? T['level'] : T
->
+export type GetLogType<T> = CheckIsLogLevel<T extends LogDefinition ? T['level'] : T>
 
-export type GetEvents<T extends any[]> =
-  T extends Array<LogLevel | LogDefinition> ? GetLogType<T[number]> : never
+export type GetEvents<T extends any[]> = T extends Array<LogLevel | LogDefinition> ? GetLogType<T[number]> : never
 
 export type QueryEvent = {
   timestamp: Date
@@ -946,7 +867,4 @@ export type PrismaAction =
 /**
  * `PrismaClient` proxy available in interactive transactions.
  */
-export type TransactionClient = Omit<
-  DefaultPrismaClient,
-  runtime.ITXClientDenyList
->
+export type TransactionClient = Omit<DefaultPrismaClient, runtime.ITXClientDenyList>
