@@ -95,4 +95,24 @@ export class AuthService {
       throw new UnauthorizedException('Refresh token is invalid')
     }
   }
+
+  async logout(refreshToken: string) {
+    try {
+      //kiem tra refresh token co hop le hay khong
+      await this.tokenService.verifyRefreshToken(refreshToken)
+      // kiem tra xem refreshtoken co trong database ko
+      await this.prismaService.refreshToken.delete({
+        where: {
+          token: refreshToken,
+        },
+      })
+      return { message: 'Logout successfully' }
+    } catch (error) {
+      // truong hop da refreshtoken roi hay thogn bao cho user biet
+      if (isNotFoundPrismaError(error)) {
+        throw new UnauthorizedException('Refresh token is invoked')
+      }
+      throw new UnauthorizedException()
+    }
+  }
 }

@@ -2,6 +2,7 @@ import { Body, Controller, Post, SerializeOptions, UseGuards } from '@nestjs/com
 import {
   LoginBodyDTO,
   LoginResDTO,
+  logoutResDTO,
   refreshTokenBodyDTO,
   RegisterBodyDTO,
   RegisterResDTO,
@@ -27,9 +28,13 @@ export class AuthController {
     const result = await this.authService.login(body)
     return new LoginResDTO(result)
   }
-  @UseGuards(AccessTokenGuard)
   @Post('refresh-token')
   async refreshToken(@Body() body: refreshTokenBodyDTO) {
     return this.authService.refreshToken(body.refreshToken)
+  }
+
+  @Post('logout')
+  async logout(@Body() body: refreshTokenBodyDTO) {
+    return new logoutResDTO(await this.authService.logout(body.refreshToken))
   }
 }
