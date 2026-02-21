@@ -4,7 +4,7 @@ import { REQUEST_USER_KEY } from 'src/shared/constants/auth.constants'
 
 @Injectable()
 export class AccessTokenGuard implements CanActivate {
-  constructor(private readonly tokenService: TokenService) {}
+  constructor(private readonly tokenService: TokenService) { }
   async canActivate(context: ExecutionContext): Promise<boolean> {
     const request = context.switchToHttp().getRequest()
     // Lấy access token từ header Authorization
@@ -15,7 +15,7 @@ export class AccessTokenGuard implements CanActivate {
     }
     try {
       const decodeAccessToken = await this.tokenService.verifyAccessToken(accessToken)
-      console.log(decodeAccessToken)
+      // console.log(decodeAccessToken)
       request[REQUEST_USER_KEY] = decodeAccessToken
       return true
     } catch (error: any) {
