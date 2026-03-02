@@ -2,11 +2,11 @@ import { Algorithm } from './../../../node_modules/@types/jsonwebtoken/index.d'
 import { Injectable } from '@nestjs/common'
 import { JwtService } from '@nestjs/jwt'
 import envConfig from 'src/shared/config'
-import { JwtPayload } from 'src/shared/types/jwt.type'
+import { TokenPayload } from '../types/jwt.type'
 
 @Injectable()
 export class TokenService {
-  constructor(private readonly jwtService: JwtService) {}
+  constructor(private readonly jwtService: JwtService) { }
   signAccessToken(payload: { userId: number }) {
     return this.jwtService.signAsync(payload, {
       secret: envConfig.ACCESS_TOKEN_SECRET,
@@ -23,12 +23,12 @@ export class TokenService {
     })
   }
 
-  verifyAccessToken(token: string): Promise<JwtPayload> {
+  verifyAccessToken(token: string): Promise<TokenPayload> {
     return this.jwtService.verifyAsync(token, {
       secret: envConfig.ACCESS_TOKEN_SECRET,
     })
   }
-  verifyRefreshToken(token: string): Promise<JwtPayload> {
+  verifyRefreshToken(token: string): Promise<TokenPayload> {
     return this.jwtService.verifyAsync(token, {
       secret: envConfig.REFRESH_TOKEN_SECRET,
     })

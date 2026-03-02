@@ -11,7 +11,7 @@ export class AuthService {
     private readonly tokenService: TokenService,
     private readonly prismaService: PrismaService,
     private readonly hashingService: HashingService,
-  ) {}
+  ) { }
 
   async register(body: RegisterBodyDTO) {
     try {
@@ -112,6 +112,7 @@ export class AuthService {
       if (isNotFoundPrismaError(error)) {
         throw new UnauthorizedException('Refresh token is invoked')
       }
+      console.log("hhfhfh");
       throw new UnauthorizedException()
     }
   }

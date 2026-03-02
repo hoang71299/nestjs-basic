@@ -1,26 +1,26 @@
 import { Body, Controller, Delete, Get, Param, Post, Put, Req, UseGuards, UseInterceptors } from '@nestjs/common'
 import { PostsService } from 'src/routes/posts/posts.service'
 import { AccessTokenGuard } from 'src/shared/guards/access-token.guard'
-import { ApiKeyGuard } from 'src/shared/guards/api-key.guard'
 import type { Request } from 'express';
-import { REQUEST_USER_KEY } from 'src/shared/constants/auth.constants';
+import { AuthType, ConditionGuard, REQUEST_USER_KEY } from 'src/shared/constants/auth.constants';
 import { createPostBodyDTO, getPostItem, updatePostBodyDTO } from 'src/routes/posts/post.dto';
+import { Auth } from 'src/shared/decorators/auth.decorator';
+import { ActiveUser } from '../../shared/decorators/active-user.decorator';
 @Controller('posts')
 export class PostsController {
   constructor(private postsService: PostsService) { }
 
-  @UseGuards(AccessTokenGuard)
+  @Auth([AuthType.Bearer, AuthType.APIKey], { condition: ConditionGuard.Or })
   @Get()
-  async getPosts(@Req() request: Request) {
-    const userId = request[REQUEST_USER_KEY].userId
+  async getPosts(@ActiveUser('userId') userId: number) {
+
     const posts = await this.postsService.getPosts(userId);
     return posts.map((post) => new getPostItem(post));
   }
-
-  @UseGuards(AccessTokenGuard)
+  @Auth([AuthType.Bearer])
   @Post()
-  async createPost(@Body() body: createPostBodyDTO, @Req() request: Request) {
-    const userId = request[REQUEST_USER_KEY].userId
+
+  async createPost(@Body() body: createPostBodyDTO, @ActiveUser('userId') userId: number) {
     const result = await this.postsService.createPost(userId, body)
     return new getPostItem(result);
   }
@@ -30,21 +30,18 @@ export class PostsController {
     return new getPostItem(result);
   }
 
-  @UseGuards(AccessTokenGuard)
+  @Auth([AuthType.Bearer])
   @Put(':id')
-  async updatePostItem(@Param('id') id: string, @Body() body: updatePostBodyDTO, @Req() request: Request) {
-    const userId = request[REQUEST_USER_KEY].userId
+  async updatePostItem(@Param('id') id: string, @Body() body: updatePostBodyDTO, @ActiveUser('userId') userId: number) {
     return this.postsService.updatePost({
       postId: Number(id),
       userId,
       body
     })
   }
-
-  @UseGuards(AccessTokenGuard)
+  @Auth([AuthType.Bearer])
   @Delete(':id')
-  async deletePost(@Param('id') id: string, @Req() request: Request) {
-    const userId = request[REQUEST_USER_KEY].userId
+  async deletePost(@Param('id') id: string, @ActiveUser('userId') userId: number) {
     return this.postsService.deletePost(Number(id), userId)
   }
 }

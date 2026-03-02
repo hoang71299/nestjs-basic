@@ -2,13 +2,12 @@ import { Injectable, CanActivate, ExecutionContext, UnauthorizedException } from
 import envConfig from 'src/shared/config'
 
 @Injectable()
-export class ApiKeyGuard implements CanActivate {
-  canActivate(context: ExecutionContext): Promise<boolean> | boolean {
+export class APIKeyGuard implements CanActivate {
+  canActivate(context: ExecutionContext): boolean {
     const request = context.switchToHttp().getRequest()
-    // Lấy access token từ header Authorization
-    const xApiKey = request.headers['x-api-key']
-    if (xApiKey !== envConfig.SECRET_API_KEY) {
-      throw new UnauthorizedException('Invalid API key')
+    const xAPIKey = request.headers['x-api-key']
+    if (xAPIKey !== envConfig.SECRET_API_KEY) {
+      throw new UnauthorizedException()
     }
     return true
   }

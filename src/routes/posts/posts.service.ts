@@ -9,7 +9,6 @@ import { PrismaService } from 'src/shared/services/prisma.service'
 export class PostsService {
   constructor(private readonly prismaService: PrismaService) { }
   getPosts(userId: number) {
-
     return this.prismaService.post.findMany({
       where: {
         authorId: userId,
